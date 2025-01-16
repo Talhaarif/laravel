@@ -1,0 +1,402 @@
+[
+    {
+        "id": 1,
+        "image": "path/to/image1.jpg",
+        "title": "Ebook Title 1",
+        "author": "Author 1",
+        "release_date": "2021-02-12",
+        "categories": [
+            "Category 2",
+            "Category 3"
+        ],
+        "number_of_pages": 160,
+        "language": "Spanish",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 1. It provides insights on topic 2.",
+        "instructor": {
+            "name": "Instructor 1",
+            "bio": "Instructor 1 is an expert in topic 2 with extensive experience.",
+            "profile_image": "path/to/instructor1.jpg"
+        }
+    },
+    {
+        "id": 2,
+        "image": "path/to/image2.jpg",
+        "title": "Ebook Title 2",
+        "author": "Author 2",
+        "release_date": "2022-03-13",
+        "categories": [
+            "Category 3",
+            "Category 4"
+        ],
+        "number_of_pages": 170,
+        "language": "English",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 2. It provides insights on topic 3.",
+        "instructor": {
+            "name": "Instructor 2",
+            "bio": "Instructor 2 is an expert in topic 3 with extensive experience.",
+            "profile_image": "path/to/instructor2.jpg"
+        }
+    },
+    {
+        "id": 3,
+        "image": "path/to/image3.jpg",
+        "title": "Ebook Title 3",
+        "author": "Author 3",
+        "release_date": "2023-04-14",
+        "categories": [
+            "Category 1",
+            "Category 5"
+        ],
+        "number_of_pages": 180,
+        "language": "Spanish",
+        "rating": 3.0,
+        "overview": "This is the overview of Ebook 3. It provides insights on topic 4.",
+        "instructor": {
+            "name": "Instructor 3",
+            "bio": "Instructor 3 is an expert in topic 4 with extensive experience.",
+            "profile_image": "path/to/instructor3.jpg"
+        }
+    },
+    {
+        "id": 4,
+        "image": "path/to/image4.jpg",
+        "title": "Ebook Title 4",
+        "author": "Author 4",
+        "release_date": "2024-05-15",
+        "categories": [
+            "Category 2",
+            "Category 6"
+        ],
+        "number_of_pages": 190,
+        "language": "English",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 4. It provides insights on topic 5.",
+        "instructor": {
+            "name": "Instructor 4",
+            "bio": "Instructor 4 is an expert in topic 5 with extensive experience.",
+            "profile_image": "path/to/instructor4.jpg"
+        }
+    },
+    {
+        "id": 5,
+        "image": "path/to/image5.jpg",
+        "title": "Ebook Title 5",
+        "author": "Author 5",
+        "release_date": "2025-06-16",
+        "categories": [
+            "Category 3",
+            "Category 2"
+        ],
+        "number_of_pages": 200,
+        "language": "Spanish",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 5. It provides insights on topic 1.",
+        "instructor": {
+            "name": "Instructor 5",
+            "bio": "Instructor 5 is an expert in topic 1 with extensive experience.",
+            "profile_image": "path/to/instructor5.jpg"
+        }
+    },
+    {
+        "id": 6,
+        "image": "path/to/image6.jpg",
+        "title": "Ebook Title 6",
+        "author": "Author 6",
+        "release_date": "2026-07-17",
+        "categories": [
+            "Category 1",
+            "Category 3"
+        ],
+        "number_of_pages": 210,
+        "language": "English",
+        "rating": 3.0,
+        "overview": "This is the overview of Ebook 6. It provides insights on topic 2.",
+        "instructor": {
+            "name": "Instructor 6",
+            "bio": "Instructor 6 is an expert in topic 2 with extensive experience.",
+            "profile_image": "path/to/instructor6.jpg"
+        }
+    },
+    {
+        "id": 7,
+        "image": "path/to/image7.jpg",
+        "title": "Ebook Title 7",
+        "author": "Author 7",
+        "release_date": "2027-08-18",
+        "categories": [
+            "Category 2",
+            "Category 4"
+        ],
+        "number_of_pages": 220,
+        "language": "Spanish",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 7. It provides insights on topic 3.",
+        "instructor": {
+            "name": "Instructor 7",
+            "bio": "Instructor 7 is an expert in topic 3 with extensive experience.",
+            "profile_image": "path/to/instructor7.jpg"
+        }
+    },
+    {
+        "id": 8,
+        "image": "path/to/image8.jpg",
+        "title": "Ebook Title 8",
+        "author": "Author 8",
+        "release_date": "2028-09-19",
+        "categories": [
+            "Category 3",
+            "Category 5"
+        ],
+        "number_of_pages": 230,
+        "language": "English",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 8. It provides insights on topic 4.",
+        "instructor": {
+            "name": "Instructor 8",
+            "bio": "Instructor 8 is an expert in topic 4 with extensive experience.",
+            "profile_image": "path/to/instructor8.jpg"
+        }
+    },
+    {
+        "id": 9,
+        "image": "path/to/image9.jpg",
+        "title": "Ebook Title 9",
+        "author": "Author 9",
+        "release_date": "2029-01-110",
+        "categories": [
+            "Category 1",
+            "Category 6"
+        ],
+        "number_of_pages": 240,
+        "language": "Spanish",
+        "rating": 3.0,
+        "overview": "This is the overview of Ebook 9. It provides insights on topic 5.",
+        "instructor": {
+            "name": "Instructor 9",
+            "bio": "Instructor 9 is an expert in topic 5 with extensive experience.",
+            "profile_image": "path/to/instructor9.jpg"
+        }
+    },
+    {
+        "id": 10,
+        "image": "path/to/image10.jpg",
+        "title": "Ebook Title 10",
+        "author": "Author 10",
+        "release_date": "2020-02-111",
+        "categories": [
+            "Category 2",
+            "Category 2"
+        ],
+        "number_of_pages": 250,
+        "language": "English",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 10. It provides insights on topic 1.",
+        "instructor": {
+            "name": "Instructor 10",
+            "bio": "Instructor 10 is an expert in topic 1 with extensive experience.",
+            "profile_image": "path/to/instructor10.jpg"
+        }
+    },
+    {
+        "id": 11,
+        "image": "path/to/image11.jpg",
+        "title": "Ebook Title 11",
+        "author": "Author 11",
+        "release_date": "2021-03-112",
+        "categories": [
+            "Category 3",
+            "Category 3"
+        ],
+        "number_of_pages": 260,
+        "language": "Spanish",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 11. It provides insights on topic 2.",
+        "instructor": {
+            "name": "Instructor 11",
+            "bio": "Instructor 11 is an expert in topic 2 with extensive experience.",
+            "profile_image": "path/to/instructor11.jpg"
+        }
+    },
+    {
+        "id": 12,
+        "image": "path/to/image12.jpg",
+        "title": "Ebook Title 12",
+        "author": "Author 12",
+        "release_date": "2022-04-113",
+        "categories": [
+            "Category 1",
+            "Category 4"
+        ],
+        "number_of_pages": 270,
+        "language": "English",
+        "rating": 3.0,
+        "overview": "This is the overview of Ebook 12. It provides insights on topic 3.",
+        "instructor": {
+            "name": "Instructor 12",
+            "bio": "Instructor 12 is an expert in topic 3 with extensive experience.",
+            "profile_image": "path/to/instructor12.jpg"
+        }
+    },
+    {
+        "id": 13,
+        "image": "path/to/image13.jpg",
+        "title": "Ebook Title 13",
+        "author": "Author 13",
+        "release_date": "2023-05-114",
+        "categories": [
+            "Category 2",
+            "Category 5"
+        ],
+        "number_of_pages": 280,
+        "language": "Spanish",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 13. It provides insights on topic 4.",
+        "instructor": {
+            "name": "Instructor 13",
+            "bio": "Instructor 13 is an expert in topic 4 with extensive experience.",
+            "profile_image": "path/to/instructor13.jpg"
+        }
+    },
+    {
+        "id": 14,
+        "image": "path/to/image14.jpg",
+        "title": "Ebook Title 14",
+        "author": "Author 14",
+        "release_date": "2024-06-115",
+        "categories": [
+            "Category 3",
+            "Category 6"
+        ],
+        "number_of_pages": 290,
+        "language": "English",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 14. It provides insights on topic 5.",
+        "instructor": {
+            "name": "Instructor 14",
+            "bio": "Instructor 14 is an expert in topic 5 with extensive experience.",
+            "profile_image": "path/to/instructor14.jpg"
+        }
+    },
+    {
+        "id": 15,
+        "image": "path/to/image15.jpg",
+        "title": "Ebook Title 15",
+        "author": "Author 15",
+        "release_date": "2025-07-116",
+        "categories": [
+            "Category 1",
+            "Category 2"
+        ],
+        "number_of_pages": 300,
+        "language": "Spanish",
+        "rating": 3.0,
+        "overview": "This is the overview of Ebook 15. It provides insights on topic 1.",
+        "instructor": {
+            "name": "Instructor 15",
+            "bio": "Instructor 15 is an expert in topic 1 with extensive experience.",
+            "profile_image": "path/to/instructor15.jpg"
+        }
+    },
+    {
+        "id": 16,
+        "image": "path/to/image16.jpg",
+        "title": "Ebook Title 16",
+        "author": "Author 16",
+        "release_date": "2026-08-117",
+        "categories": [
+            "Category 2",
+            "Category 3"
+        ],
+        "number_of_pages": 310,
+        "language": "English",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 16. It provides insights on topic 2.",
+        "instructor": {
+            "name": "Instructor 16",
+            "bio": "Instructor 16 is an expert in topic 2 with extensive experience.",
+            "profile_image": "path/to/instructor16.jpg"
+        }
+    },
+    {
+        "id": 17,
+        "image": "path/to/image17.jpg",
+        "title": "Ebook Title 17",
+        "author": "Author 17",
+        "release_date": "2027-09-118",
+        "categories": [
+            "Category 3",
+            "Category 4"
+        ],
+        "number_of_pages": 320,
+        "language": "Spanish",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 17. It provides insights on topic 3.",
+        "instructor": {
+            "name": "Instructor 17",
+            "bio": "Instructor 17 is an expert in topic 3 with extensive experience.",
+            "profile_image": "path/to/instructor17.jpg"
+        }
+    },
+    {
+        "id": 18,
+        "image": "path/to/image18.jpg",
+        "title": "Ebook Title 18",
+        "author": "Author 18",
+        "release_date": "2028-01-119",
+        "categories": [
+            "Category 1",
+            "Category 5"
+        ],
+        "number_of_pages": 330,
+        "language": "English",
+        "rating": 3.0,
+        "overview": "This is the overview of Ebook 18. It provides insights on topic 4.",
+        "instructor": {
+            "name": "Instructor 18",
+            "bio": "Instructor 18 is an expert in topic 4 with extensive experience.",
+            "profile_image": "path/to/instructor18.jpg"
+        }
+    },
+    {
+        "id": 19,
+        "image": "path/to/image19.jpg",
+        "title": "Ebook Title 19",
+        "author": "Author 19",
+        "release_date": "2029-02-120",
+        "categories": [
+            "Category 2",
+            "Category 6"
+        ],
+        "number_of_pages": 340,
+        "language": "Spanish",
+        "rating": 3.5,
+        "overview": "This is the overview of Ebook 19. It provides insights on topic 5.",
+        "instructor": {
+            "name": "Instructor 19",
+            "bio": "Instructor 19 is an expert in topic 5 with extensive experience.",
+            "profile_image": "path/to/instructor19.jpg"
+        }
+    },
+    {
+        "id": 20,
+        "image": "path/to/image20.jpg",
+        "title": "Ebook Title 20",
+        "author": "Author 20",
+        "release_date": "2020-03-121",
+        "categories": [
+            "Category 3",
+            "Category 2"
+        ],
+        "number_of_pages": 350,
+        "language": "English",
+        "rating": 4.0,
+        "overview": "This is the overview of Ebook 20. It provides insights on topic 1.",
+        "instructor": {
+            "name": "Instructor 20",
+            "bio": "Instructor 20 is an expert in topic 1 with extensive experience.",
+            "profile_image": "path/to/instructor20.jpg"
+        }
+    }
+]

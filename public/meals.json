@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "image": "path/to/meal1.jpg",
+        "title": "Grilled Chicken Salad",
+        "chef": "Chef Anna",
+        "available_date": "2024-01-10",
+        "categories": [
+            "Healthy",
+            "Low Carb"
+        ],
+        "prep_time": "30 minutes",
+        "language": "English",
+        "rating": 4.8,
+        "overview": "A delicious and healthy grilled chicken salad topped with fresh vegetables and a light vinaigrette.",
+        "chef_info": {
+            "name": "Chef Anna",
+            "bio": "Chef Anna specializes in healthy, gourmet meals and has over a decade of experience.",
+            "profile_image": "path/to/chef1.jpg"
+        }
+    },
+    {
+        "id": 2,
+        "image": "path/to/meal2.jpg",
+        "title": "Vegetarian Pasta Primavera",
+        "chef": "Chef Marco",
+        "available_date": "2024-02-15",
+        "categories": [
+            "Vegetarian",
+            "Italian"
+        ],
+        "prep_time": "25 minutes",
+        "language": "English",
+        "rating": 4.5,
+        "overview": "A colorful vegetarian pasta dish made with fresh seasonal vegetables and a rich tomato sauce.",
+        "chef_info": {
+            "name": "Chef Marco",
+            "bio": "Chef Marco is an Italian cuisine expert with a passion for creating vegetarian delights.",
+            "profile_image": "path/to/chef2.jpg"
+        }
+    },
+    {
+        "id": 3,
+        "image": "path/to/meal3.jpg",
+        "title": "Spicy Tandoori Chicken",
+        "chef": "Chef Priya",
+        "available_date": "2024-03-20",
+        "categories": [
+            "Indian",
+            "Spicy"
+        ],
+        "prep_time": "1 hour",
+        "language": "English",
+        "rating": 4.7,
+        "overview": "Authentic tandoori chicken marinated in aromatic spices and cooked to perfection.",
+        "chef_info": {
+            "name": "Chef Priya",
+            "bio": "Chef Priya brings the vibrant flavors of India to your table with her authentic recipes.",
+            "profile_image": "path/to/chef3.jpg"
+        }
+    },
+    {
+        "id": 4,
+        "image": "path/to/meal4.jpg",
+        "title": "Classic Beef Stroganoff",
+        "chef": "Chef James",
+        "available_date": "2024-04-05",
+        "categories": [
+            "Comfort Food",
+            "Beef"
+        ],
+        "prep_time": "40 minutes",
+        "language": "English",
+        "rating": 4.6,
+        "overview": "A hearty and creamy beef stroganoff served with egg noodles.",
+        "chef_info": {
+            "name": "Chef James",
+            "bio": "Chef James is known for his comfort food classics, bringing warmth and nostalgia to every dish.",
+            "profile_image": "path/to/chef4.jpg"
+        }
+    },
+    {
+        "id": 5,
+        "image": "path/to/meal5.jpg",
+        "title": "Vegan Buddha Bowl",
+        "chef": "Chef Sophie",
+        "available_date": "2024-05-01",
+        "categories": [
+            "Vegan",
+            "Gluten-Free"
+        ],
+        "prep_time": "20 minutes",
+        "language": "English",
+        "rating": 4.9,
+        "overview": "A nutrient-packed bowl featuring quinoa, roasted chickpeas, and a creamy tahini dressing.",
+        "chef_info": {
+            "name": "Chef Sophie",
+            "bio": "Chef Sophie specializes in plant-based cuisine, creating meals that are both delicious and nutritious.",
+            "profile_image": "path/to/chef5.jpg"
+        }
+    }
+]

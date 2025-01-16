@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "image": "path/to/course1.jpg",
+        "title": "Course Title 1",
+        "instructor": "Instructor 1",
+        "start_date": "2021-05-10",
+        "categories": [
+            "Category 2",
+            "Category 3"
+        ],
+        "duration": "3 hours",
+        "language": "Spanish",
+        "rating": 4.5,
+        "overview": "This is the overview of Course 1. It covers topic 1 in depth.",
+        "instructor_info": {
+            "name": "Instructor 1",
+            "bio": "Instructor 1 is an expert in topic 1 with years of teaching experience.",
+            "profile_image": "path/to/instructor1.jpg"
+        }
+    },
+    {
+        "id": 2,
+        "image": "path/to/course2.jpg",
+        "title": "Course Title 2",
+        "instructor": "Instructor 2",
+        "start_date": "2022-06-15",
+        "categories": [
+            "Category 3",
+            "Category 4"
+        ],
+        "duration": "5 hours",
+        "language": "English",
+        "rating": 4.0,
+        "overview": "This is the overview of Course 2. It provides insights on topic 2.",
+        "instructor_info": {
+            "name": "Instructor 2",
+            "bio": "Instructor 2 is a seasoned professional in topic 2, offering hands-on experience.",
+            "profile_image": "path/to/instructor2.jpg"
+        }
+    },
+    {
+        "id": 3,
+        "image": "path/to/course3.jpg",
+        "title": "Course Title 3",
+        "instructor": "Instructor 3",
+        "start_date": "2023-07-20",
+        "categories": [
+            "Category 1",
+            "Category 5"
+        ],
+        "duration": "6 hours",
+        "language": "Spanish",
+        "rating": 4.2,
+        "overview": "This is the overview of Course 3. It focuses on advanced techniques in topic 3.",
+        "instructor_info": {
+            "name": "Instructor 3",
+            "bio": "Instructor 3 specializes in topic 3 and has helped many professionals excel in the field.",
+            "profile_image": "path/to/instructor3.jpg"
+        }
+    },
+    {
+        "id": 4,
+        "image": "path/to/course4.jpg",
+        "title": "Course Title 4",
+        "instructor": "Instructor 4",
+        "start_date": "2024-01-15",
+        "categories": [
+            "Category 2",
+            "Category 6"
+        ],
+        "duration": "8 hours",
+        "language": "English",
+        "rating": 4.8,
+        "overview": "This is the overview of Course 4. It is a beginner-friendly course on topic 4.",
+        "instructor_info": {
+            "name": "Instructor 4",
+            "bio": "Instructor 4 is an authority on topic 4, known for making complex concepts easy to understand.",
+            "profile_image": "path/to/instructor4.jpg"
+        }
+    },
+    {
+        "id": 5,
+        "image": "path/to/course5.jpg",
+        "title": "Course Title 5",
+        "instructor": "Instructor 5",
+        "start_date": "2025-03-10",
+        "categories": [
+            "Category 3",
+            "Category 2"
+        ],
+        "duration": "4 hours",
+        "language": "Spanish",
+        "rating": 3.9,
+        "overview": "This is the overview of Course 5. It dives deep into topic 5 with real-world examples.",
+        "instructor_info": {
+            "name": "Instructor 5",
+            "bio": "Instructor 5 has practical experience in topic 5, bringing industry insights to the course.",
+            "profile_image": "path/to/instructor5.jpg"
+        }
+    }
+]
