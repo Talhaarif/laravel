@@ -80,6 +80,7 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('auth_token');
+    console.log(this.token);
     if (!this.token) {
       console.error('No token found. Please log in again.');
       return;
