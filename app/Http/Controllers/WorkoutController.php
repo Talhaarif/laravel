@@ -83,6 +83,7 @@ class WorkoutController extends Controller
         return response()->json(['message' => 'Workout updated successfully!', 'workout' => $workout], 200);
     }
 
+    
     // Delete a workout
     public function destroy($id)
     {
