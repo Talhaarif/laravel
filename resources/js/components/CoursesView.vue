@@ -2,7 +2,7 @@
     <div>
         <div class="heading-and-btn">
             <h2 class="title-one">Courses</h2>
-        <router-link to="/courses-list" class="register-link share-btn">Manage Courses</router-link>
+        <router-link to="courses-list" class="register-link share-btn">Manage Courses</router-link>
         </div>
         
         <div class="courses-main-div">
@@ -14,7 +14,16 @@
                     </select>
                 </div>
                 <div class="course-list">
-                    <CourseCardView v-for="(course, index) in recentCourses" :key="'recent-' + index" :course="course" />
+                    <CourseCardView 
+                    v-for="course in RecentData"
+                    :key="course.id"
+                    :featureImg="course.image"
+                    :title="course.title"
+                    :admin_name="course.admin_name"
+                    :adminImg="course.admin_image"
+                    :admin_role="course.admin_role"
+                    @readMore="navigateToDetails(course.slug)"
+                    />
                 </div>
             </div>
             <div class="featured-courses courses-row">
@@ -25,7 +34,6 @@
                     </select>
                 </div>
                 <div class="course-list">
-                    <CourseCardView v-for="(course, index) in featuredCourses" :key="'feature-' + index" :course="course" />
                 </div>
             </div>
             <div class="best-courses courses-row">
@@ -36,13 +44,13 @@
                     </select>
                 </div>
                 <div class="course-list">
-                    <CourseCardView v-for="(course, index) in bestCourses" :key="'best-' + index" :course="course" />
+               
                 </div>
             </div>
         </div>
     </div>
 </template>
-<script>
+<!-- <script>
 import CourseCardView from './CourseCardView.vue';
 
 export default {
@@ -131,6 +139,61 @@ export default {
         };
     },
 }
+</script> -->
+
+<script>
+import axios from 'axios';
+import CourseCardView from './CourseCardView.vue';
+
+export default {
+  components: {
+    CourseCardView,
+  },
+  data() {
+    return {
+      RecentData: [],
+      loading: true,
+      error: null,
+      token: '',
+    };
+    
+  },
+  created() {
+        // Retrieve data from localStorage when the component is created
+        this.token = localStorage.getItem('auth_token');
+    },
+  mounted() {
+    this.fetchData(); // Correct method invocation
+  },
+  name: 'DetailCourse',
+  computed: {
+    slug() {
+      return this.$route.params.slug;
+    }
+  },
+  methods: {
+    navigateToDetails(slug) {
+    console.log('Navigating to:', { name: 'DetailCourse', params: { slug } });
+    this.$router.push(`courses-details/${slug}`);
+  },
+    async fetchData() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/courses', {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        });
+        this.RecentData = response.data.courses;
+        console.log(this.RecentData); // Logs the fetched array to the console
+      } catch (err) {
+        this.error = 'Failed to fetch data.';
+        console.error(err);
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+};
 </script>
 <style scoped>
 .courses-row{
