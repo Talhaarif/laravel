@@ -1,7 +1,7 @@
 <template lang="">
     <div class="workout-card-main" @click="$emit('readMore')">
         <div class="card-img-main">
-            <img :src="image" alt="Course Image" class="card-img" />
+            <img :src="image" :alt="image" class="card-img" />
         </div>
         <div class="workout-body">
             <h2>{{title}}</h2>

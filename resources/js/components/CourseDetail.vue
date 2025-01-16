@@ -1,21 +1,21 @@
 <template>
     <div class="course-detail-container">
         <!-- Breadcrumb -->
-        <div class="breadcrumb">Courses > {{ course.category }}</div>
+        <div class="breadcrumb">Courses > {{ CompleteData.category }}</div>
 
         <!-- Course Header -->
         <div class="course-header">
             <div class="course-image">
-                <img :src="course.image" :alt="course.title">
+                <img class="single-feature-img" :src="CompleteData.image" :alt="CompleteData.title">
             </div>
             <div class="course-info">
                 <div class="course-meta">
-                    <span class="rating">⭐ {{ course.rating }}</span>
-                    <span class="duration">⏰ {{ course.duration }}</span>
+                    <span class="rating">⭐ {{ CompleteData.rating }}</span>
+                    <span class="duration">⏰ {{ CompleteData.duration }}</span>
                 </div>
-                <h2 class="course-title">{{ course.title }}</h2>
-                <p>{{ course.description }}</p>
-                <div class="course-progress">{{ course.progress }} assignment complete</div>
+                <h2 class="course-title">{{ CompleteData.title }}</h2>
+                <p>{{ CompleteData.description }}</p>
+                <div class="course-progress">{{ CompleteData.progress }} assignment complete</div>
                 <button class="enroll-button">Enroll Now</button>
             </div>
         </div>
@@ -37,19 +37,19 @@
         <div class="tab-content">
             <div v-if="activeTab === 'Information'">
                 <h2 class="sub-title">Overview</h2>
-                <p class="overview-para">{{ course.overview }}</p>
+                <p class="overview-para">{{ CompleteData.overview }}</p>
                 <h3 class="sub-title">Instructor</h3>
                 <div class="instructor-info">
-                    <img :src="course.admin.image" :alt="course.admin.name">
+                    <img :src="CompleteData.admin_image" :alt="CompleteData.admin_image">
                     <div>
-                        <h3>{{ course.admin.name }}</h3>
-                        <p>{{ course.admin.role }}</p>
+                        <h3>{{ CompleteData.admin_name }}</h3>
+                        <p>{{ CompleteData.admin_role }}</p>
                     </div>
                 </div>
                 <h2 class="sub-title">Course Details</h2>
                 <div class="course-details">
-                    <p><strong>Language:</strong> {{ course.language }}</p>
-                    <p><strong>Modules:</strong> {{ course.modules }} Total</p>
+                    <p><strong>Language:</strong> {{ CompleteData.language }}</p>
+                    <p><strong>Modules:</strong> {{ CompleteData.modules }} Total</p>
                 </div>
             </div>
             <div v-else-if="activeTab === 'Curriculum'">
@@ -66,49 +66,73 @@
 
 <script>
 export default {
-    props: ['id'],
-    data() {
-        return {
-            course: null,
-            activeTab: 'Information',
-        };
-    },
-    created() {
-        this.fetchCourseData();
-    },
-    methods: {
-        fetchCourseData() {
-            const courseId = this.id;
-            // Simulating a fetch. Replace this with actual API call.
-            const allCourses = [
-                {
-                    id: 1,
-                    category: "UI/UX Design Essentials",
-                    title: "UX/UI Design Foundations: Master Core Concepts and Skills",
-                    image: "/images/detailcourse.png",
-                    rating: "5.0",
-                    duration: "9h 15m",
-                    description: "The UX/UI Design Foundations course equips you with essential skills in user experience and interface design, focusing on creating intuitive, user-centered digital products. Through hands-on projects, you'll master key design principles and industry tools.",
-                    progress: "0/20 assignment complete",
-                    overview: "The Google UX Design Professional Certificate offers a deep dive into the fundamentals of user experience and interface design. This course is designed to help learners develop a strong foundation in UX principles, wireframing, prototyping, and usability testing. With hands-on projects and real-world applications, students will gain practical skills to design user-centered digital products. Whether you’re new to the field or looking to enhance your design knowledge, this course equips you with the tools and strategies needed to succeed in the growing field of UX/UI design.",
-                    admin: {
-                        name: "Razib Ara Kamal",
-                        role: "Senior UI/UX Designer",
-                        image: "/images/course-admin.png",
-                    },
-                    language: "English",
-                    modules: 5,
-                },
-                // Other courses...
-            ];
-            this.course = allCourses.find((course) => course.id == courseId);
+  name: 'DetailCourse',
+  name: 'CourseTabs',
+  data() {
+    return {
+        activeTab: 'Information',
+      CourseDetails: null, // Holds the full course details
+      CompleteData: {}, // Extracted data for the course
+      loading: true, // Loading state for the API call
+      token: '', // Token retrieved from localStorage
+      error: null, // To handle and display error messages
+    };
+  },
+  async created() {
+    // Get the slug from the route parameters
+    const CourseSlug = this.$route.params.slug;
+
+    // Retrieve the token from localStorage
+    this.token = localStorage.getItem('auth_token');
+
+    // If token is missing, log an error and stop execution
+    if (!this.token) {
+      this.error = 'No authentication token found. Please log in again.';
+      console.error(this.error);
+      return;
+    }
+
+    try {
+      // Make the API request to fetch course details
+      const response = await fetch(`http://127.0.0.1:8000/api/courses/${CourseSlug}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${this.token}`, // Include the token in the headers
+          'Content-Type': 'application/json', // Specify content type
         },
-        setActiveTab(tab) {
-            this.activeTab = tab;
-        },
+      });
+
+      // Check if the response status is not OK
+      if (!response.ok) {
+        throw new Error(`Failed to fetch details: ${response.statusText}`);
+      }
+
+      // Parse the JSON response
+      const data = await response.json();
+
+      // Set the retrieved course details to the component's data
+      this.CourseDetails = data;
+      this.CompleteData = data.course || {}; // Use fallback to handle undefined values
+
+      // Debugging: Log the fetched data
+      console.log('Fetched course details:', this.CompleteData);
+    } catch (error) {
+      // Handle and display any errors
+      this.error = error.message || 'An unknown error occurred.';
+      console.error('Error:', error);
+    } finally {
+      // Stop the loading indicator
+      this.loading = false;
+    }
+  },
+  methods: {
+    setActiveTab(tab) {
+      this.activeTab = tab;
     },
+  },
 };
 </script>
+
 
 <style scoped>
 .course-detail-container {

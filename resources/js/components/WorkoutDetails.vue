@@ -56,7 +56,7 @@ export default {
       if (!response.ok) throw new Error('Failed to fetch details');
 
       this.WorkoutDetail = await response.json(); // Save the API response to data
-      this.workout = this.WorkoutDetail.works || {}; // Use fallback to avoid undefined
+      this.workout = this.WorkoutDetail || {}; // Use fallback to avoid undefined
       console.log('Fetched workout Details:', this.workout); // Show data in the console
     } catch (error) {
       console.error('Error:', error); // Log any errors

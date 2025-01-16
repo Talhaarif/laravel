@@ -1,118 +1,121 @@
 <template>
-    <div class="workout-add-container">
-      <h2>Add Workout Details</h2>
-      <form @submit.prevent="addWorkout">
-        <div class="form-group">
-          <label for="image">Workout Image URL</label>
-          <input id="image" v-model="newWorkout.image" type="text" placeholder="Enter image URL" required />
-        </div>
+  <div class="workout-add-container">
+    <h2>Add Workout Details</h2>
+    <form @submit.prevent="addWorkout">
+      <div class="form-row">
         <div class="form-group">
           <label for="title">Workout Title</label>
           <input id="title" v-model="newWorkout.title" type="text" placeholder="Enter title" required />
         </div>
         <div class="form-group">
-          <label for="description">Workout Description</label>
-          <textarea id="description" v-model="newWorkout.description" placeholder="Enter description" required></textarea>
-        </div>
-        <div class="form-group">
           <label for="cal">Calories</label>
-          <input id="cal" v-model="newWorkout.cal" type="text" placeholder="Enter calories" required />
+          <input id="cal" v-model="newWorkout.cal" type="number" placeholder="Enter calories" required />
         </div>
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label for="duration">Duration</label>
           <input id="duration" v-model="newWorkout.duration" type="text" placeholder="Enter duration" required />
         </div>
         <div class="form-group">
-          <label for="overview">Workout Overview</label>
-          <textarea id="overview" v-model="newWorkout.overview" placeholder="Enter overview" required></textarea>
+          <label for="kcal">Estimated Kcal</label>
+          <input id="kcal" v-model="newWorkout.kcal" type="number" placeholder="Enter estimated Kcal" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Workout Description</label>
+        <textarea id="description" v-model="newWorkout.description" placeholder="Enter description" required></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="image">Workout Image URL</label>
+          <input id="image" v-model="newWorkout.image" type="url" placeholder="Enter image URL" required />
         </div>
         <div class="form-group">
-          <label for="kcal">Estimated Kcal</label>
-          <input id="kcal" v-model="newWorkout.kcal" type="text" placeholder="Enter estimated Kcal" required />
+          <label for="category">Workout Category</label>
+          <select id="category" v-model="newWorkout.category" required>
+            <option value="" disabled>Select category</option>
+            <option value="bicep">Bicep</option>
+            <option value="tricep">Tricep</option>
+            <option value="chest">Chest</option>
+          </select>
         </div>
-        <button type="submit">Add Workout</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        newWorkout: {
-          image: '',
-          title: '',
-          description: '',
-          cal: '',
-          duration: '',
-          overview: '',
-          kcal: '',
-        },
-        token: '',
-      };
-    },
-    methods: {
-      async addWorkout() {
-        try {
-          // Ensure `newWorkout` exists
-          if (!this.newWorkout) {
-            throw new Error('Workout object is not initialized.');
-          }
-  
-          // Get token from localStorage
-          this.token = localStorage.getItem('auth_token');
-          console.log(this.token);
-  
-          if (!this.token) {
-            throw new Error('No token found. Please log in again.');
-          }
-  
-          // Prepare the new workout data
-          const workoutData = {
-            ...this.newWorkout,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          };
-  
-          // Send the data to the API
-          const response = await fetch(`http://127.0.0.1:8000/api/workouts`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${this.token}`, // Use `this.token` here
-            },
-            body: JSON.stringify(workoutData),
-          });
-  
-          if (!response.ok) {
-            const errorData = await response.json(); // Parse error details
-            throw new Error(
-              errorData.message || 'Failed to add the workout. Please try again.'
-            );
-          }
-  
-          alert('Workout added successfully!');
-          this.$router.push('/dashboard/workout-list'); // Redirect to the workouts list page
-        } catch (error) {
-          console.error('Error adding workout:', error);
-          alert(
-            `Failed to add the workout. ${
-              error.message || 'Please check your input and try again.'
-            }`
-          );
-        }
+      </div>
+      <div class="form-group">
+        <label for="overview">Workout Overview</label>
+        <textarea id="overview" v-model="newWorkout.overview" placeholder="Enter overview" required></textarea>
+      </div>
+      <button type="submit">Add Workout</button>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      newWorkout: {
+        image: '',
+        title: '',
+        description: '',
+        cal: '',
+        duration: '',
+        overview: '',
+        kcal: '',
+        category: '',
       },
+      token: '',
+    };
+  },
+  methods: {
+    async addWorkout() {
+      try {
+        if (!this.newWorkout.title || !this.newWorkout.description) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        this.token = localStorage.getItem('auth_token');
+        if (!this.token) {
+          throw new Error('No token found. Please log in again.');
+        }
+
+        const workoutData = {
+          ...this.newWorkout,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+
+        console.log('Sending data:', workoutData);
+
+        const response = await fetch(`http://127.0.0.1:8000/api/workouts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.token}`,
+          },
+          body: JSON.stringify(workoutData),
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+          console.error('API Error:', result);
+          throw new Error(result.message || 'Failed to add the workout.');
+        }
+
+        alert('Workout added successfully!');
+        this.$router.push('/dashboard/workouts-list');
+      } catch (error) {
+        console.error('Error adding workout:', error);
+        alert(error.message || 'An error occurred while adding the workout.');
+      }
     },
-  };
-  </script>
-  
-  
-  
-  
-  
-  
+  },
+};
+</script>
+ 
   <style scoped>
-  .meal-add-container {
+  .workout-add-container {
     max-width: 900px;
     padding: 20px;
     background: #1F2625;
@@ -152,7 +155,8 @@
   }
   
   input,
-  textarea {
+  textarea,
+  select {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--secondary-color);

@@ -83,7 +83,7 @@ const routes = [
         component: CoursesView,
       },
       {
-        path: 'courses/:id',
+        path: 'courses-details/:slug',
         name: 'DetailCourse',
         component: CourseDetail,
         props: true,
