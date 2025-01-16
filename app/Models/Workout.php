@@ -21,4 +21,21 @@ class Workout extends Model
         'kcal',
         'views_count',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($workout) {
+            if (empty($workout->slug)) {
+                $workout->slug = Str::slug($workout->title, '-');
+            }
+        });
+
+        static::updating(function ($workout) {
+            if ($workout->isDirty('title')) {
+                $workout->slug = Str::slug($workout->title, '-');
+            }
+        });
+    }
 }

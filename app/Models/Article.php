@@ -23,4 +23,25 @@ class Article extends Model
         'admin_image',
         'views',
     ];
+
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($article) {
+            if (empty($article->slug)) {
+                $article->slug = Str::slug($article->title, '-');
+            }
+        });
+
+        static::updating(function ($article) {
+            if ($article->isDirty('title')) {
+                $article->slug = Str::slug($article->title, '-');
+            }
+        });
+    }
+
+
 }

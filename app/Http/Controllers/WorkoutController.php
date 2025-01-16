@@ -27,54 +27,58 @@ class WorkoutController extends Controller
     {
         $trendingWorkouts = Workout::orderBy('views_count', 'desc')->take(3)->get();
         return response()->json($trendingWorkouts);
+    
     }
 
-    // Store a new workout
+
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required',
-            'image' => 'nullable|url',
-            'video' => 'nullable|url',
-            'category' => 'required|string|max:255',
-            'cal' => 'required|string',
-            'duration' => 'required|string',
-            'overview' => 'required|string',
-            'kcal' => 'required|string',
-        ]);
+{
+    $validatedData = $request->validate([
+        'category' => 'required|string|max:255',
+        'title' => 'required|string|max:255',
+        'image' => 'nullable|url',
+        'video' => 'nullable|url',
+        'rating' => 'nullable|numeric|min:0|max:5',
+        'duration' => 'required|string',
+        'description' => 'required|string',
+        'overview' => 'required|string',
+        'language' => 'required|string|max:255',
+        'kcal' => 'required|integer',
+    ]);
 
-        $workout = Workout::create($validatedData);
-        return response()->json(['message' => 'Workout added successfully', 'workout' => $workout], 201);
-    }
+    $workout = Workout::create($validatedData);
 
-    // Show workout details and increment views count
-    public function show($id)
+    return response()->json(['message' => 'Workout added successfully!', 'workout' => $workout], 201);
+}
+
+    // Fetch a single workout
+
+    public function show($slug)
     {
-        $workout = Workout::findOrFail($id);
-        $workout->increment('views_count'); // Increment views count
-        return response()->json($workout);
+    $workout = Workout::where('slug', $slug)->firstOrFail();
+    return response()->json($workout, 200);
     }
 
     // Update a workout
     public function update(Request $request, $id)
     {
-        $workout = Workout::findOrFail($id);
-
         $validatedData = $request->validate([
+            'category' => 'required|string|max:255',
             'title' => 'required|string|max:255',
-            'description' => 'required',
             'image' => 'nullable|url',
             'video' => 'nullable|url',
-            'category' => 'required|string|max:255',
-            'cal' => 'required|string',
+            'rating' => 'nullable|numeric|min:0|max:5',
             'duration' => 'required|string',
+            'description' => 'required|string',
             'overview' => 'required|string',
-            'kcal' => 'required|string',
+            'language' => 'required|string|max:255',
+            'kcal' => 'required|integer',
         ]);
-
+    
+        $workout = Workout::findOrFail($id);
         $workout->update($validatedData);
-        return response()->json(['message' => 'Workout updated successfully', 'workout' => $workout]);
+    
+        return response()->json(['message' => 'Workout updated successfully!', 'workout' => $workout], 200);
     }
 
     // Delete a workout
