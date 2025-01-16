@@ -43,6 +43,7 @@ class WorkoutController extends Controller
         'description' => 'required|string',
         'overview' => 'required|string',
         'language' => 'required|string|max:255',
+        'cal' => 'required|integer',
         'kcal' => 'required|integer',
     ]);
 
@@ -72,6 +73,7 @@ class WorkoutController extends Controller
             'description' => 'required|string',
             'overview' => 'required|string',
             'language' => 'required|string|max:255',
+            'cal' => 'required|integer',
             'kcal' => 'required|integer',
         ]);
     
