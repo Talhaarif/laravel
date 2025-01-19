@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 class WorkoutController extends Controller
 {
     // Fetch all workouts with sorting
-    public function index(Request $request)
+    public function index()
     {
-        $sort = $request->query('sort', 'desc'); // Sort by new to old
-        $workouts = Workout::orderBy('created_at', $sort)->get();
-        return response()->json($workouts);
+        // Fetch all workouts
+        $workouts = Workout::all();
+    
+        // Return response
+        return response()->json([
+            'message' => 'Workouts retrieved successfully!',
+            'workouts' => $workouts,
+        ], 200);
     }
+    
 
     // Fetch recent workouts
     public function recent()

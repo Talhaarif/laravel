@@ -33,13 +33,18 @@ public function store(Request $request)
 }
 
 
-    public function index(Request $request)
-    {
-        $sortOrder = $request->query('sort', 'desc'); // Default to descending order (newest first)
-        $articles = Article::orderBy('created_at', $sortOrder)->paginate(10);
+public function index()
+{
+    // Fetch all Articles
+    $articles = Article::all();
 
-        return response()->json(['articles' => $articles], 200);
-    }
+    // Return response
+    return response()->json([
+        'message' => 'Articles retrieved successfully!',
+        'articles' => $articles,
+    ], 200);
+}
+
 
     public function show($slug)
     {
