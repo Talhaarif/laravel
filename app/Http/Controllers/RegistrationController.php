@@ -38,6 +38,7 @@ class RegistrationController extends Controller
                 'regex:/[a-z]/',          // Must include at least one lowercase letter
                 'confirmed',
             ],
+            'role' => 'required|in:admin,user',
             // 'captcha' => 'required|captcha',
         ]);
 
@@ -72,6 +73,7 @@ class RegistrationController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'profile_image' => $profileImagePath,
+            'role' => $validated['role'],
         ]);
 
         $token = $user->createToken('API Token')->plainTextToken; 
