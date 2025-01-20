@@ -52,6 +52,26 @@ public function index()
     return response()->json($article, 200);
     }
 
+
+    public function articlesByCategory(Request $request)
+    {
+        $validatedData = $request->validate([
+            'category' => 'required|string|max:255',
+        ]);
+
+        $articles = Article::where('category', $validatedData['category'])->get();
+
+        if ($articles->isEmpty()) {
+            return response()->json(['message' => 'No articles found for the given category'], 404);
+        }
+
+        return response()->json([
+            'message' => 'Articles retrieved successfully!',
+            'articles' => $articles,
+        ], 200);
+    }
+
+
     public function update(Request $request, $id)
 {
     $validatedData = $request->validate([

@@ -88,4 +88,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/articles/trending', [ArticleController::class, 'trending']);
     Route::get('/articles/best', [ArticleController::class, 'best']);
     Route::get('/articles/recent', [ArticleController::class, 'recent']);
+    Route::post('/articles/category', [ArticleController::class, 'articlesByCategory']);
 });
