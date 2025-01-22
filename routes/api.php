@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/ebooks/recent', [EbookController::class, 'recent']);
     Route::get('/ebooks/popular', [EbookController::class, 'popular']);
     Route::get('/ebooks/{slug}', [EbookController::class, 'show']);
+    Route::get('/ebooks/{id}', [EbookController::class, 'edit']);
     Route::post('/ebooks/{id}/rate', [EbookController::class, 'rate']);
     Route::get('/ebooks/trending', [EbookController::class, 'trending']);
 
@@ -45,6 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/courses/recent', [CourseController::class, 'recent']);
     Route::get('/courses/popular', [CourseController::class, 'popular']);
     Route::get('/courses/{slug}', [CourseController::class, 'show']);
+    Route::get('/courses/{id}', [CourseController::class, 'edit']);
     Route::post('/courses/{id}/rate', [CourseController::class, 'rate']);
     Route::get('/courses/trending', [CourseController::class, 'trending']);
 
@@ -59,6 +61,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meals/recent', [MealController::class, 'recent']);
     Route::get('/meals/popular', [MealController::class, 'popular']);
     Route::get('/meals/{slug}', [MealController::class, 'show']);
+    Route::get('/meals/{id}', [MealController::class, 'edit']);
     Route::post('/meals/{id}/rate', [MealController::class, 'rate']);
     Route::get('/meals/trending', [MealController::class, 'trending']);
 });
@@ -70,6 +73,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/workouts', [WorkoutController::class, 'index']);
     Route::post('/workouts', [WorkoutController::class, 'store']);
     Route::get('/workouts/{slug}', [WorkoutController::class, 'show']);
+    Route::get('/workouts/{id}', [WorkoutController::class, 'edit']);
     Route::put('/workouts/{id}', [WorkoutController::class, 'update']);
     Route::delete('/workouts/{id}', [WorkoutController::class, 'destroy']);
 
@@ -83,6 +87,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/articles', [ArticleController::class, 'store']);
     Route::get('/articles', [ArticleController::class, 'index']);
     Route::get('/articles/{slug}', [ArticleController::class, 'show']);
+    Route::get('/articles/{id}', [ArticleController::class, 'edit']);
     Route::put('/articles/{id}', [ArticleController::class, 'update']);
     Route::delete('/articles/{id}', [ArticleController::class, 'destroy']);
     Route::get('/articles/trending', [ArticleController::class, 'trending']);

@@ -22,6 +22,12 @@ class MealController extends Controller
         return response()->json(['message' => 'Meal retrieved successfully!', 'meal' => $meal], 200);
     }
 
+    public function edit($id)
+    {
+        $meal = Meal::where('id', $id)->firstOrFail();
+        return response()->json(['message' => 'Meal retrieved successfully!', 'meal' => $meal], 200);
+    }
+
 
     public function store(Request $request)
     {

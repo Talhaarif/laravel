@@ -110,6 +110,16 @@ public function show($slug)
     ], 200);
 }
 
+
+public function edit($id)
+{
+    $ebook = Ebook::where('id', $id)->firstOrFail();
+    return response()->json([
+        'message' => 'Ebook retrieved successfully!',
+        'ebook' => $ebook,
+    ], 200);
+}
+
 public function recent()
 {
     $recentEbooks = Ebook::orderBy('created_at', 'desc')->take(10)->get();

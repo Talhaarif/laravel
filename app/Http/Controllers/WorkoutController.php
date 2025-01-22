@@ -66,6 +66,13 @@ class WorkoutController extends Controller
     return response()->json($workout, 200);
     }
 
+    // Fetch a single workout
+    public function edit($id)
+    {
+        $workout = Workout::where('id', $id)->firstOrFail();
+        return response()->json(['message' => 'Workout retrieved successfully!', 'workout' => $workout], 200);
+    }
+
     // Update a workout
     public function update(Request $request, $id)
     {

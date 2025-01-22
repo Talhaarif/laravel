@@ -20,6 +20,12 @@ class CourseController extends Controller
         return response()->json(['message' => 'Course retrieved successfully!', 'course' => $course], 200);
     }
 
+    public function edit($id)
+    {
+        $course = Course::where('id', $id)->firstOrFail();
+        return response()->json(['message' => 'Course retrieved successfully!', 'course' => $course], 200);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

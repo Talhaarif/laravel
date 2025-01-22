@@ -49,6 +49,15 @@ public function index()
     public function show($slug)
     {
     $article = Article::where('slug', $slug)->firstOrFail();
+    $article->increment('views_count');
+
+    return response()->json($article, 200);
+    }
+
+
+    public function edit($id)
+    {
+    $article = Article::where('id', $id)->firstOrFail();
     return response()->json($article, 200);
     }
 
