@@ -113,7 +113,7 @@ public function show($slug)
 
 public function edit($id)
 {
-    $ebook = Ebook::where('id', $id)->firstOrFail();
+    $ebook = Ebook::findOrFail($id);
     return response()->json([
         'message' => 'Ebook retrieved successfully!',
         'ebook' => $ebook,

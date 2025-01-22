@@ -21,10 +21,10 @@ class CourseController extends Controller
     }
 
     public function edit($id)
-    {
-        $course = Course::where('id', $id)->firstOrFail();
-        return response()->json(['message' => 'Course retrieved successfully!', 'course' => $course], 200);
-    }
+{
+    $course = Course::findOrFail($id);
+    return response()->json(['message' => 'Course retrieved successfully!', 'course' => $course], 200);
+}
 
     public function store(Request $request)
     {

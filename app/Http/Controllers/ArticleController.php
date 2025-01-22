@@ -56,10 +56,10 @@ public function index()
 
 
     public function edit($id)
-    {
-    $article = Article::where('id', $id)->firstOrFail();
-    return response()->json($article, 200);
-    }
+{
+    $article = Article::findOrFail($id);
+    return response()->json(['message' => 'Article retrieved successfully!', 'article' => $article], 200);
+}
 
 
     public function articlesByCategory(Request $request)
