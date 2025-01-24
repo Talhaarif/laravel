@@ -72,4 +72,42 @@ class PostController extends Controller
         $posts = auth()->user()->posts()->with('polls')->get();
         return response()->json(['posts' => $posts], 200);
     }
+
+
+    public function recent()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        return response()->json(['recent_posts' => $posts], 200);
+    }
+
+    // Fetch trending posts
+    public function trending()
+    {
+        $posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get();
+        return response()->json(['trending_posts' => $posts], 200);
+    }
+
+    // Like or unlike a post
+    public function like(Request $request, $postId)
+    {
+        $user = auth()->user();
+
+        $post = Post::findOrFail($postId);
+
+        $like = Like::where('post_id', $post->id)->where('user_id', $user->id)->first();
+
+        if ($like) {
+            // Unlike the post
+            $like->delete();
+            return response()->json(['message' => 'Post unliked successfully.'], 200);
+        } else {
+            // Like the post
+            Like::create([
+                'post_id' => $post->id,
+                'user_id' => $user->id,
+            ]);
+
+            return response()->json(['message' => 'Post liked successfully.'], 201);
+        }
+    }
 }

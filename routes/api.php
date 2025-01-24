@@ -107,6 +107,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/posts', [PostController::class, 'index']);
     Route::get('/posts/mine', [PostController::class, 'myPosts']);
     Route::get('/posts/{slug}', [PostController::class, 'show']);
+    Route::get('/posts/recent', [PostController::class, 'recent']); // Recent posts
+    Route::get('/posts/trending', [PostController::class, 'trending']); // Trending posts
+    Route::post('/posts/{postId}/like', [PostController::class, 'like']); // Like or unlike a post
 
     // Poll Endpoints
     Route::post('/polls', [PollController::class, 'store']);
