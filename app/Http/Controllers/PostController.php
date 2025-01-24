@@ -14,16 +14,24 @@ class PostController extends Controller
             'caption' => 'required|string|max:255',
             'hashtags' => 'nullable|array',
             'media' => 'nullable|array|max:3', // Max 3 images or 1 video
-            'media.*' => 'url',
+            'media.*' => 'file|mimes:jpeg,jpg,png,gif,mp4,mov,avi|max:10240',
             'scheduled_at' => 'nullable|date',
         ]);
 
+
+        $mediaPaths = [];
+    if ($request->hasFile('media')) {
+        foreach ($request->file('media') as $file) {
+            $path = $file->store('uploads/posts', 'public'); // Store in 'storage/app/public/uploads/posts'
+            $mediaPaths[] = asset('storage/' . $path); // Generate a URL to access the file
+        }
+    }
 
         $post = Post::create([
             'user_id' => Auth::id(),
             'caption' => $request->caption,
             'hashtags' => $request->hashtags,
-            'media' => $request->media,
+            'media' => json_encode($mediaPaths),
             'scheduled_at' => $request->scheduled_at,
         ]);
 
