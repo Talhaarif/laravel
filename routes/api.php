@@ -9,6 +9,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PollController;
 
 
 
@@ -94,4 +96,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/articles/best', [ArticleController::class, 'best']);
     Route::get('/articles/recent', [ArticleController::class, 'recent']);
     Route::post('/articles/category', [ArticleController::class, 'articlesByCategory']);
+});
+
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Post Endpoints
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::get('/posts', [PostController::class, 'index']);
+    Route::get('/posts/mine', [PostController::class, 'myPosts']);
+    Route::get('/posts/{slug}', [PostController::class, 'show']);
+
+    // Poll Endpoints
+    Route::post('/polls', [PollController::class, 'store']);
 });
