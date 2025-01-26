@@ -19,6 +19,21 @@ class Post extends Model
         'media' => 'array',    // Automatically casts media to/from JSON
     ];
 
+
+
+    public function getMediaAttribute($value)
+    {
+        $mediaFiles = json_decode($value, true);
+
+        if (is_array($mediaFiles)) {
+            return array_map(function ($file) {
+                return asset('storage/' . ltrim($file, '/'));
+            }, $mediaFiles);
+        }
+
+        return [];
+    }
+
     public function polls()
     {
         return $this->hasOne(Poll::class); // One-to-one relationship

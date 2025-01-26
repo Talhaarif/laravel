@@ -19,13 +19,23 @@ class PostController extends Controller
         ]);
 
 
-        $mediaPaths = [];
+    //     $mediaPaths = [];
+    // if ($request->hasFile('media')) {
+    //     foreach ($request->file('media') as $file) {
+    //         $path = $file->store('uploads/posts', 'public'); // Store in 'storage/app/public/uploads/posts'
+    //         $mediaPaths[] = asset('storage/' . $path); // Generate a URL to access the file
+    //     }
+    // }
+
+
+    $mediaPaths = [];
+
     if ($request->hasFile('media')) {
         foreach ($request->file('media') as $file) {
-            $path = $file->store('uploads/posts', 'public'); // Store in 'storage/app/public/uploads/posts'
-            $mediaPaths[] = asset('storage/' . $path); // Generate a URL to access the file
+            $mediaPaths[] = $file->store('uploads/posts', 'public');
         }
     }
+
 
         $post = Post::create([
             'user_id' => Auth::id(),
