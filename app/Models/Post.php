@@ -23,16 +23,21 @@ class Post extends Model
 
     public function getMediaAttribute($value)
     {
+        if (!$value) {
+            return []; // Return empty array if value is null
+        }
+    
         $mediaFiles = json_decode($value, true);
-
-        if (is_array($mediaFiles)) {
+    
+        if (is_array($mediaFiles) && count($mediaFiles) > 0) {
             return array_map(function ($file) {
                 return asset('storage/' . ltrim($file, '/'));
             }, $mediaFiles);
         }
-
+    
         return [];
     }
+    
 
     public function polls()
     {
