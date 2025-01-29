@@ -42,7 +42,7 @@ class PostController extends Controller
             'user_id' => Auth::id(),
             'caption' => $request->caption,
             'hashtags' => $request->hashtags,
-            'media' => json_encode($mediaPaths),
+            'media' => $mediaPaths,
             'scheduled_at' => $request->scheduled_at,
         ]);
 

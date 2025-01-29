@@ -28,9 +28,8 @@ class Post extends Model
         }
 
         $mediaArray = json_decode($value, true);
-        return array_map(function ($path) {
-            return asset('storage/' . $path);
-        }, $mediaArray);
+
+        return array_map(fn ($path) => asset('storage/' . $path), $value ?? []);
     }
     
 
