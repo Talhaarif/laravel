@@ -21,16 +21,16 @@ class Post extends Model
 
 
 
-    public function getMediaAttribute($value)
-    {
-        if (!$value) {
-            return []; // Return empty array if null
-        }
+    // public function getMediaAttribute($value)
+    // {
+    //     if (!$value) {
+    //         return []; // Return empty array if null
+    //     }
 
-        $mediaArray = json_decode($value, true);
+    //     // $mediaArray = json_decode($value, true);
 
-        return array_map(fn ($path) => asset('storage/' . $path), $value ?? []);
-    }
+    //     return array_map(fn ($path) => asset('storage/' . $path), $value ?? []);
+    // }
     
 
     public function polls()
