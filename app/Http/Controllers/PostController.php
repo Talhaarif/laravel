@@ -104,16 +104,22 @@ class PostController extends Controller
 
     public function recent()
     {
-        $posts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        $posts = Post::with('user', 'polls')->orderBy('created_at', 'desc')->take(5)->get();
         return response()->json(['recent_posts' => $posts], 200);
     }
 
     // Fetch trending posts
+
     public function trending()
-    {
-        $posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get();
-        return response()->json(['trending_posts' => $posts], 200);
-    }
+{
+    $posts = Post::with('user', 'polls')
+        ->withCount('likes') // This generates likes_count dynamically
+        ->orderBy('likes_count', 'desc') // Sort by likes
+        ->take(5)
+        ->get();
+
+    return response()->json(['trending_posts' => $posts], 200);
+}
 
     // Like or unlike a post
     public function like(Request $request, $postId)

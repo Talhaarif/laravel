@@ -18,19 +18,6 @@ class Post extends Model
         'hashtags' => 'array', // Automatically casts hashtags to/from JSON
         'media' => 'array',    // Automatically casts media to/from JSON
     ];
-
-
-
-    // public function getMediaAttribute($value)
-    // {
-    //     if (!$value) {
-    //         return []; // Return empty array if null
-    //     }
-
-    //     // $mediaArray = json_decode($value, true);
-
-    //     return array_map(fn ($path) => asset('storage/' . $path), $value ?? []);
-    // }
     
 
     public function polls()
@@ -56,6 +43,14 @@ class Post extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    
+
+    // Add a dynamic attribute to count likes
+    public function getLikesCountAttribute()
+    {
+        return $this->likes()->count();
     }
     
 }
