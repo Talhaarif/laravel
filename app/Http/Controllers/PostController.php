@@ -31,11 +31,28 @@ class PostController extends Controller
 
     $mediaPaths = [];
 
+    // if ($request->hasFile('media')) {
+    //     foreach ($request->file('media') as $file) {
+    //         $mediaPaths[] = $file->store('uploads/posts', 'public');
+    //     }
+    // }
+
+
     if ($request->hasFile('media')) {
         foreach ($request->file('media') as $file) {
-            $mediaPaths[] = $file->store('uploads/posts', 'public');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = 'uploads/posts/' . $filename;
+    
+            $moved = $file->move(public_path('uploads/posts'), $filename);
+    
+            if (!$moved) {
+                return response()->json(['message' => 'File move failed!'], 500);
+            }
+    
+            $mediaPaths[] = $path;
         }
     }
+    
 
 
         $post = Post::create([
