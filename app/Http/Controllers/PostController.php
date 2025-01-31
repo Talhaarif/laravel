@@ -112,10 +112,8 @@ class PostController extends Controller
 
     public function trending()
 {
-    $posts = Post::withCount('likes')
-        ->orderBy('likes_count', 'desc') // Sort by likes
-        ->take(5)
-        ->get();
+    $posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->toArray();
+
 
     return response()->json(['trending_posts' => $posts], 200);
 }
