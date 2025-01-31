@@ -112,8 +112,7 @@ class PostController extends Controller
 
     public function trending()
 {
-    $posts = Post::with('user', 'polls')
-        ->withCount('likes') // This generates likes_count dynamically
+    $posts = Post::withCount('likes')
         ->orderBy('likes_count', 'desc') // Sort by likes
         ->take(5)
         ->get();
