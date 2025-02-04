@@ -123,8 +123,14 @@ class PostController extends Controller
 
     public function trending()
     {
-        $posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get();
-    
+       
+        $user = auth()->user();
+
+        $posts = Post::withCount('likes', 'polls' ,  'user')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
+            $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
+            return $post;
+        });
+
         
         if ($posts->isEmpty()) {
             return response()->json(['message' => 'No trending posts found'], 404);
