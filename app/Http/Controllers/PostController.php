@@ -130,7 +130,7 @@ class PostController extends Controller
             return response()->json(['message' => 'No trending posts found'], 404);
         }
     
-        return response()->json(['trending_posts' => $posts], 200);
+        return response()->json(['posts' => $posts], 200);
     }
     
 
