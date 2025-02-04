@@ -68,7 +68,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with('polls' ,  'user')->latest()->get();
+        $posts = Post::withCount('polls' ,  'user', 'likes')->latest()->get();
 
         return response()->json(['message' => 'All posts retrieved successfully!', 'posts' => $posts], 200);
     }
