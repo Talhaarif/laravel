@@ -68,7 +68,18 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::withCount('polls' ,  'user', 'likes')->latest()->get();
+
+        $user = auth()->user();
+        $posts = Post::withCount('polls' ,  'user', 'likes')->latest()->get()->map(function ($post) use ($user) {
+            $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
+            return $post;
+        });
+
+
+
+        // $posts = Post::withCount('likes')->get()
+
+
 
         return response()->json(['message' => 'All posts retrieved successfully!', 'posts' => $posts], 200);
     }
