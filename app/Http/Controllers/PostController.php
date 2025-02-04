@@ -111,12 +111,17 @@ class PostController extends Controller
     // Fetch trending posts
 
     public function trending()
-{
-    $posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->toArray();
-
-
-    return response()->json(['trending_posts' => $posts], 200);
-}
+    {
+        $posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get();
+    
+        
+        if ($posts->isEmpty()) {
+            return response()->json(['message' => 'No trending posts found'], 404);
+        }
+    
+        return response()->json(['trending_posts' => $posts], 200);
+    }
+    
 
     // Like or unlike a post
     public function like(Request $request, $postId)
