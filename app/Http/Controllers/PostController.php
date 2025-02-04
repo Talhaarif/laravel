@@ -70,18 +70,14 @@ class PostController extends Controller
     {
 
         $user = auth()->user();
-        $posts = Post::withCount('polls' ,  'user', 'likes')->latest()->get()->map(function ($post) use ($user) {
+        $posts = Post::with('polls' ,  'user')->withCount('likes')->latest()->get()->map(function ($post) use ($user) {
             $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
             return $post;
         });
 
 
 
-        // $posts = Post::withCount('likes')->get()
-
-
-
-        return response()->json(['message' => 'All posts retrieved successfully!', 'posts' => $posts], 200);
+        return response()->json(['message' => 'All posts retrieved successfully!', 'posts' => $posts ], 200);
     }
 
     // public function show($slug)
@@ -126,7 +122,7 @@ class PostController extends Controller
        
         $user = auth()->user();
 
-        $posts = Post::withCount('likes', 'polls' ,  'user')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
+        $posts = Post::with('polls' ,  'user')->withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
             $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
             return $post;
         });
@@ -136,7 +132,7 @@ class PostController extends Controller
             return response()->json(['message' => 'No trending posts found'], 404);
         }
     
-        return response()->json(['posts' => $posts], 200);
+        return response()->json(['message' => 'All trending posts retrieved successfully!', 'posts' => $posts ], 200);
     }
     
 
