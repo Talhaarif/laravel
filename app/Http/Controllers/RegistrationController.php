@@ -73,7 +73,7 @@ class RegistrationController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'profile_image' => $profileImagePath,
-            'role' => $validated['role'],
+            'role' => $validator['role'],
         ]);
 
         $token = $user->createToken('API Token')->plainTextToken; 
