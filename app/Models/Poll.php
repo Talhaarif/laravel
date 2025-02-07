@@ -19,4 +19,28 @@ class Poll extends Model
     {
         return $this->belongsTo(Post::class); // Belongs to one post
     }
+
+
+    
+    public function votes()
+    {
+        return $this->hasMany(PollVote::class);
+    }
+
+    // Get vote counts per option
+    public function getVoteCountsAttribute()
+    {
+        return $this->votes()
+            ->selectRaw('option, COUNT(*) as count')
+            ->groupBy('option')
+            ->pluck('count', 'option');
+    }
+
+    // Total votes in the poll
+    public function getTotalVotesAttribute()
+    {
+        return $this->votes()->count();
+    }
+
+
 }

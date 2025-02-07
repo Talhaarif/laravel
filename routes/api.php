@@ -11,6 +11,7 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PollController;
+use App\Http\Controllers\CommentController;
 
 
 
@@ -102,19 +103,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    // Post Endpoints
-    // Route::post('/posts', [PostController::class, 'store']);
-    // Route::get('/posts', [PostController::class, 'index']);
-    // Route::get('/posts/mine', [PostController::class, 'myPosts']);
-    // Route::get('/posts/{slug}', [PostController::class, 'show']);
-    // Route::get('/posts/recent', [PostController::class, 'recent']); // Recent posts
-    // Route::get('/posts/trending', [PostController::class, 'trending']); // Trending posts
-    // Route::post('/posts/{postId}/like', [PostController::class, 'like']); // Like or unlike a post
-
-    // // Poll Endpoints
-    // Route::post('/polls', [PollController::class, 'store']);
-
-
     Route::prefix('posts')->group(function () {
         Route::post('/', [PostController::class, 'store']);  
         Route::get('/', [PostController::class, 'index']);   
@@ -123,9 +111,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/trending', [PostController::class, 'trending']); 
         Route::get('/{slug}', [PostController::class, 'show']);  
         Route::post('/{postId}/like', [PostController::class, 'like']); 
+        Route::post('/{postId}/comments', [CommentController::class, 'store']); // Add Comment
+        Route::get('/{postId}/comments', [CommentController::class, 'index']);  // Fetch Comments
+        
     });
     Route::prefix('polls')->group(function () {
         Route::post('/', [PollController::class, 'store']);
+        Route::post('/{pollId}/vote', [PollController::class, 'vote']);  // Voting
+    });
+    Route::prefix('comments')->group(function () {
+        Route::post('/{commentId}', [CommentController::class, 'destroy']); // Delete Comment
     });
 });
 

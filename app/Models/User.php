@@ -20,4 +20,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class); // One-to-many relationship
     }
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
 }
