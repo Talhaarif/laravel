@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Poll;
 use Illuminate\Http\Request;
 use App\Models\PollVote;
+use Illuminate\Support\Facades\Auth;
+
 
 class PollController extends Controller
 {
