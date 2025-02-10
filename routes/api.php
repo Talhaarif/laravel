@@ -120,7 +120,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/{pollId}/vote', [PollController::class, 'vote']);  // Voting
     });
     Route::prefix('comments')->group(function () {
-        Route::post('/{commentId}', [CommentController::class, 'destroy']); // Delete Comment
+        Route::delete('/{commentId}', [CommentController::class, 'destroy']); // Delete Comment
     });
 });
 

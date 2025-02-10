@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Poll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -52,7 +54,7 @@ class PostController extends Controller
     {
 
         $user = auth()->user();
-        $posts = Post::with('polls' ,  'user')->withCount('likes')->latest()->get()->map(function ($post) use ($user) {
+        $posts = Post::with('polls' ,  'user', 'comments')->withCount('likes')->latest()->get()->map(function ($post) use ($user) {
             if ($post->polls) {
                 $post->polls->vote_counts = $post->polls->vote_counts;
                 $post->polls->total_votes = $post->polls->total_votes;
@@ -80,7 +82,12 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        $post = Post::with('polls', 'user', 'comments.user')->where('slug', $slug)->firstOrFail();
+        $post = Post::with(['polls', 'user', 'comments'])->where('slug', $slug)->firstOrFail();
+
+        if ($post->polls) {
+            $post->polls->vote_counts = $post->polls->vote_counts;
+            $post->polls->total_votes = $post->polls->total_votes;
+        }
         if (!$post) {
                     return response()->json(['message' => 'Post not found!'], 404);
                 }
@@ -108,7 +115,11 @@ class PostController extends Controller
        
         $user = auth()->user();
 
-        $posts = Post::with('polls' ,  'user', 'comments.user')->withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
+        $posts = Post::with('polls' ,  'user', 'comments')->withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
+            if ($post->polls) {
+                $post->polls->vote_counts = $post->polls->vote_counts;
+                $post->polls->total_votes = $post->polls->total_votes;
+            }
             $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
             return $post;
         });
