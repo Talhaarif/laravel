@@ -42,5 +42,40 @@ class Poll extends Model
         return $this->votes()->count();
     }
 
+    public function getVotePercentagesAttribute()
+    {
+        $totalVotes = $this->votes()->count();
+        $voteCounts = $this->votes()
+            ->selectRaw('option, COUNT(*) as count')
+            ->groupBy('option')
+            ->pluck('count', 'option')
+            ->toArray();
+
+        $percentages = [];
+        foreach ($this->options as $option) {
+            $count = $voteCounts[$option] ?? 0;
+            $percentages[$option] = $totalVotes > 0 ? round(($count / $totalVotes) * 100, 2) : 0;
+        }
+
+        return $percentages;
+    }
+
+
+    public function voters()
+{
+    return $this->hasManyThrough(User::class, PollVote::class, 'poll_id', 'id', 'id', 'user_id');
+}
+
+// Get random profile images of voters (e.g., 10 random images)
+public function getRandomVotersProfileImagesAttribute()
+{
+    return $this->voters()
+                ->whereNotNull('profile_image')
+                ->inRandomOrder()
+                ->take(10)
+                ->pluck('profile_image')
+                ->toArray();
+}
+
 
 }

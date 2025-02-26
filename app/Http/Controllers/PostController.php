@@ -54,10 +54,11 @@ class PostController extends Controller
     {
 
         $user = auth()->user();
-        $posts = Post::with('polls' ,  'user', 'comments')->withCount('likes')->latest()->get()->map(function ($post) use ($user) {
+        $posts = Post::with('polls.votes.user' ,  'user', 'comments')->withCount('likes')->latest()->get()->map(function ($post) use ($user) {
             if ($post->polls) {
                 $post->polls->vote_counts = $post->polls->vote_counts;
                 $post->polls->total_votes = $post->polls->total_votes;
+                $post->polls->vote_percentages = $post->polls->vote_percentages;
             }
             $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
             return $post;
@@ -82,11 +83,12 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        $post = Post::with(['polls', 'user', 'comments'])->where('slug', $slug)->firstOrFail();
+        $post = Post::with(['polls.votes.user', 'user', 'comments'])->where('slug', $slug)->firstOrFail();
 
         if ($post->polls) {
             $post->polls->vote_counts = $post->polls->vote_counts;
             $post->polls->total_votes = $post->polls->total_votes;
+            $post->polls->vote_percentages = $post->polls->vote_percentages;
         }
         if (!$post) {
                     return response()->json(['message' => 'Post not found!'], 404);
@@ -115,10 +117,11 @@ class PostController extends Controller
        
         $user = auth()->user();
 
-        $posts = Post::with('polls' ,  'user', 'comments')->withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
+        $posts = Post::with('polls.votes.user' ,  'user', 'comments')->withCount('likes')->orderBy('likes_count', 'desc')->take(5)->get()->map(function ($post) use ($user) {
             if ($post->polls) {
                 $post->polls->vote_counts = $post->polls->vote_counts;
                 $post->polls->total_votes = $post->polls->total_votes;
+                $post->polls->vote_percentages = $post->polls->vote_percentages;
             }
             $post->is_liked = $user ? $post->likes()->where('user_id', $user->id)->exists() : false;
             return $post;

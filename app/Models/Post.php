@@ -22,7 +22,7 @@ class Post extends Model
 
     public function polls()
     {
-        return $this->hasOne(Poll::class); // One-to-one relationship
+        return $this->hasOne(Poll::class)->with(['votes.user']); // One-to-one relationship
     }
 
     public static function boot()
@@ -57,5 +57,6 @@ class Post extends Model
 {
     return $this->hasMany(Comment::class);
 }
+
     
 }
